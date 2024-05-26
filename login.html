@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="./favicon_io/android-chrome-512x512.png" sizes="64x64">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./login.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Finance Tracker - A Personal Finance App</title>
+  <script type="module" src="login.js" defer></script> <!-- Include the login.js script -->
+</head>
+<body>
+  <nav>
+    <div class="navbar">
+      <a href="#" class="logo"><i class="fas fa-chart-line"></i> Finance Tracker</a>
+      <ul class="nav-links">
+        <li><a href="./index.html">Home</a></li>
+      </ul>
+      <div class="buttons">
+        <a href="./sign-up.html" class="btn-head"><i class="fas fa-user-plus"></i> Sign Up</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <form class="login-form">
+      <h2>Login</h2>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <a href="#" id="forgot-password-link">Forgot Password?</a>
+      </div>
+      <button type="submit">Login</button>
+      <br>
+      <button type="button" id="google-signin-button">Sign in with Google</button> <!-- Google Sign-In Button -->
+    </form>
+  </div>
+
+
+
+
+   <!-- Forgot Password Modal -->
+   <div id="forgot-password-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Reset Password</h2>
+      <form id="forgot-password-form">
+        <div class="form-group">
+          <label for="reset-email">Enter your email address</label>
+          <input type="email" id="reset-email" name="reset-email" required>
+        </div>
+        <button type="submit">Send Reset Link</button>
+      </form>
+    </div>
+  </div>
+
+
+  <footer>
+    <div class="footer">
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script>feather.replace();</script>
+  <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+</body>
+</html>
