@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
@@ -79,6 +79,34 @@ forgotPasswordLink.addEventListener('click', function(event) {
       alert('Password reset email sent! Check your inbox.');
     })
     .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    });
+});
+
+// Google Sign-In functionality
+const googleSignInButton = document.getElementById('google-signin-button');
+const provider = new GoogleAuthProvider();
+
+googleSignInButton.addEventListener('click', function() {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      // The signed-in user info.
+      const user = result.user;
+
+      // Retrieve user data
+      getUserData(user.uid).then(data => {
+        console.log(data);
+        // You can store user data in session storage or local storage if needed
+        sessionStorage.setItem('userData', JSON.stringify(data));
+      });
+
+      // Redirect the user to another page
+      window.location.href = './index.html'; // Change to your designated page
+    })
+    .catch((error) => {
+      // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
       alert(errorMessage);
