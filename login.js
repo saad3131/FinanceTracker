@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
@@ -54,6 +54,29 @@ form.addEventListener('submit', function(event) {
 
       // Redirect the user to another page
       window.location.href = './index.html'; // Change to your designated page
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    });
+});
+
+// Forgot Password functionality
+const forgotPasswordLink = document.getElementById('forgot-password-link');
+forgotPasswordLink.addEventListener('click', function(event) {
+  event.preventDefault();
+
+  const email = document.getElementById('email').value;
+
+  if (!email) {
+    alert('Please enter your email address to reset your password.');
+    return;
+  }
+
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      alert('Password reset email sent! Check your inbox.');
     })
     .catch((error) => {
       const errorCode = error.code;
